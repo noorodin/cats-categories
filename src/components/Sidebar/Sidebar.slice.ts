@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "core/store";
 import { getData } from "core/Axios/axios.api";
-import { IMenuItem } from "types/sidebar";
+import { ICategory } from "types/category";
 
 export interface SidebarState {
-  menuItems: IMenuItem[];
+  menuItems: ICategory[];
   isSidebarOpen: boolean;
   status: "idle" | "loading" | "failed";
 }
@@ -16,7 +16,7 @@ const initialState: SidebarState = {
 };
 
 export const getCategoriesAsync = createAsyncThunk(
-  "sidebar/getMenuItems",
+  "sidebar/getCategories",
   async () => {
     const response = await getData("/categories");
     return response.data;

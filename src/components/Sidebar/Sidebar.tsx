@@ -1,19 +1,22 @@
 import React, { useEffect } from "react";
-import { IMenuItem } from "types/sidebar";
+import { ICategory } from "types/category";
 import StyleWrapper from "./Sidebar.style";
 import { useAppSelector, useAppDispatch } from "core/hooks";
 import { sidebar, getCategoriesAsync, toggleSidebar } from "./Sidebar.slice";
+import { getCategoryAsync } from "components/Category/Category.slice";
 
 interface SidebarProps {
-  menuItems: IMenuItem[];
+  menuItems: ICategory[];
 }
 
 function Sidebar() {
   const { status, menuItems, isSidebarOpen } = useAppSelector(sidebar);
   const dispatch = useAppDispatch();
+
   useEffect(() => {
     dispatch(getCategoriesAsync());
   }, []);
+
   return (
     <StyleWrapper>
       <button onClick={() => dispatch(toggleSidebar())}>+</button>
@@ -23,8 +26,8 @@ function Sidebar() {
         "loading"
       ) : (
         <ul>
-          {menuItems.map((item: IMenuItem) => (
-            <li>{item.name}</li>
+          {menuItems.map((item: ICategory) => (
+            <li key={item.id}>{item.name}</li>
           ))}
         </ul>
       )}
