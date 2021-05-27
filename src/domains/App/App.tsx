@@ -1,10 +1,14 @@
 import React from "react";
 import StyleWrapper from "./App.style";
+import Layout from "containers/Layout";
+import Category from "components/Category";
 
 function App() {
   return (
     <StyleWrapper>
-      <div>Hello World!</div>
+      <Layout>
+        <Category />
+      </Layout>
     </StyleWrapper>
   );
 }
