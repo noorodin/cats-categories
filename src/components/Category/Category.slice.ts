@@ -11,15 +11,15 @@ export interface CategoryState {
 
 const initialState: CategoryState = {
   items: [],
-  categoryId: 1,
+  categoryId: -1,
   status: "idle",
 };
 
 export const getCategoryAsync = createAsyncThunk(
   "category/getCategory",
-  async (categoryId: number) => {
+  async (id: number) => {
     const response = await getData(
-      `/images/search?limit=10&category_ids=${categoryId}`
+      `/images/search?limit=10&category_ids=${id}`
     );
     return response.data;
   }
@@ -36,12 +36,16 @@ export const categorySlice = createSlice({
       })
       .addCase(getCategoryAsync.fulfilled, (state, action) => {
         state.status = "idle";
-        state.items = action.payload;
+
+        if (action?.meta?.arg === state.categoryId) {
+          state.items.push(...action.payload);
+        } else {
+          state.items = action.payload;
+          state.categoryId = action.meta.arg;
+        }
       });
   },
 });
-
-export const {} = categorySlice.actions;
 
 export const category = (state: RootState) => state.category;
 

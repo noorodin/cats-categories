@@ -11,7 +11,7 @@ export interface SidebarState {
 
 const initialState: SidebarState = {
   menuItems: [{}],
-  isSidebarOpen: true,
+  isSidebarOpen: window.innerWidth > 1200,
   status: "idle",
 };
 
@@ -28,7 +28,8 @@ export const sidebarSlice = createSlice({
   initialState,
   reducers: {
     toggleSidebar: (state) => {
-      state.isSidebarOpen = !state.isSidebarOpen;
+      state.isSidebarOpen =
+        window?.innerWidth > 1200 ? true : !state.isSidebarOpen;
     },
   },
   extraReducers: (builder) => {

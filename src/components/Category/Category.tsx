@@ -1,27 +1,38 @@
-import React, { useEffect } from "react";
+import React, { useCallback } from "react";
 import StyleWrapper from "./Category.style";
 import { getCategoryAsync, category } from "./Category.slice";
 import { useAppDispatch, useAppSelector } from "core/hooks";
 import { ICategories } from "types/category";
 
 function Category() {
-  const { status, items } = useAppSelector(category);
+  const { status, items, categoryId } = useAppSelector(category);
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    dispatch(getCategoryAsync(1));
-  }, []);
+  const ItemsComponent = useCallback(() => {
+    return (
+      <section className="image-wrapper">
+        {items.map((item: ICategories) => (
+          <img key={item.id} src={item.url} alt="" loading="lazy" />
+        ))}
+      </section>
+    );
+  }, [items]);
 
   return (
     <StyleWrapper>
-      {status === "loading" ? (
-        "loading"
+      {items.length === 0 ? (
+        <h1>
+          {status === "loading"
+            ? "Loading ..."
+            : "Please select a category from the sidebar."}
+        </h1>
       ) : (
-        <section className="image-wrapper">
-          {items.map((item: ICategories) => (
-            <img key={item.id} src={item.url} alt="" />
-          ))}
-        </section>
+        <div className="content">
+          <ItemsComponent />
+          <button onClick={() => dispatch(getCategoryAsync(+categoryId))}>
+            {status === "loading" ? "Loading ..." : "More Items"}
+          </button>
+        </div>
       )}
     </StyleWrapper>
   );

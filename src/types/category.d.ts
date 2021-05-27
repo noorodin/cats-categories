@@ -1,7 +1,7 @@
 export interface ICategories {
   id?: string;
   breeds: any;
-  categories: IMenuItem[];
+  categories: ICategory[];
   height: number;
   url: string;
   width: number;
