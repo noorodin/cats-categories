@@ -1,7 +1,10 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import sidebarReducer from "components/Sidebar/Sidebar.slice";
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    sidebar: sidebarReducer,
+  },
 });
 
 export type AppDispatch = typeof store.dispatch;
