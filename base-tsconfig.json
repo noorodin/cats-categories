@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "forceConsistentCasingInFileNames": false,
+    "paths": {
+      "core": ["/core"],
+      "domains": ["/domains"]
+    },
+    "typeRoots": ["node_modules/@types"]
+  }
+}
