@@ -2,8 +2,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Demo
 
-![](https://i.postimg.cc/hjmHyFQk/Cats-Website.gif)
-<img src="https://i.postimg.cc/hjmHyFQk/Cats-Website.gif" width="640" height="360" />
+![Demo Image](https://i.postimg.cc/hjmHyFQk/Cats-Website.gif)
+<img src="https://i.postimg.cc/hjmHyFQk/Cats-Website.gif" width="100%" />
 
 ## Available Scripts
 
