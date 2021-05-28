@@ -1,22 +1,25 @@
-import React, { FC, memo } from "react";
+import React, { FC, memo, Suspense, lazy } from "react";
 import { Route, Switch } from "react-router-dom";
+import LoadingFallback from "components/LoadingFallback";
 
-import Category from "domains/Category";
-import Home from "domains/Home";
+const Category = lazy(() => import("domains/Category"));
+const Home = lazy(() => import("domains/Home"));
 
 const AppRoutes: FC = () => {
   return (
-    <Switch>
-      <Route path="/" exact>
-        <Home />
-      </Route>
-      <Route path={`/category`}>
-        <Category />
-      </Route>
-      <Route path="*">
-        <h1>Not Found!</h1>
-      </Route>
-    </Switch>
+    <Suspense fallback={<LoadingFallback />}>
+      <Switch>
+        <Route path="/" exact>
+          <Home />
+        </Route>
+        <Route path={`/category`}>
+          <Category />
+        </Route>
+        <Route path="*">
+          <h1>Not Found!</h1>
+        </Route>
+      </Switch>
+    </Suspense>
   );
 };
 
