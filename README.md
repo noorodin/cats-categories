@@ -1,5 +1,14 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
+I used below technologies:
+
+- typescript
+- styled-component
+- lazy loading
+- responsive ui
+- react-redux
+- redux-thunk
+
 ## Demo Link
 
 [https://i.postimg.cc/hjmHyFQk/Cats-Website.gif](https://i.postimg.cc/hjmHyFQk/Cats-Website.gif)
