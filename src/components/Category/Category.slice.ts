@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "core/redux/store";
 import { getData } from "core/axios/axios.api";
-import { ICategories } from "types/category";
+import { IImage } from "types/category";
 
 export interface CategoryState {
-  items: ICategories[];
+  items: IImage[];
   categoryId: number;
   status: "idle" | "loading" | "failed";
 }

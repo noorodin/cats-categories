@@ -1,4 +1,4 @@
-export interface ICategories {
+export interface IImage {
   id: string;
   breeds: any;
   categories: ICategory[];

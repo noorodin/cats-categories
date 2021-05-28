@@ -55,7 +55,7 @@ function Sidebar() {
                   {item.name}
                   {categoryStatus === "loading" &&
                     +item.id === categoryId &&
-                    "..."}
+                    " ..."}
                 </li>
               ))}
             </ul>

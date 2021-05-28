@@ -44,6 +44,12 @@ export default styled.section`
     flex-direction: column;
     gap: 16px;
 
+    @media only screen and (min-width: 480px) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 24px;
+    }
+
     @media only screen and (min-width: 768px) {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -51,12 +57,19 @@ export default styled.section`
     }
 
     @media only screen and (min-width: 1200px) {
-      grid-template-columns: repeat(6, 1fr);
+      grid-template-columns: repeat(5, 1fr);
     }
 
     img {
       max-width: 100%;
       border-radius: 8px;
+      align-self: center;
+      justify-self: center;
+
+      @media only screen and (min-width: 480px) {
+        width: 235px;
+        height: 150px;
+      }
     }
   }
 `;
