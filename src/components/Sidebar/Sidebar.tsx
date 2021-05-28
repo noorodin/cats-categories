@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { FC, memo, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { ICategory } from "types/category";
 import StyleWrapper from "./Sidebar.style";
 import { useAppSelector, useAppDispatch } from "core/redux/hooks";
@@ -8,10 +9,14 @@ import {
   toggleSidebar,
   setIsMobile,
 } from "./Sidebar.slice";
-import { getCategoryAsync, category } from "components/Category/Category.slice";
+import {
+  getCategoryAsync,
+  category,
+} from "components/CategoryList/CategoryList.slice";
 import { useWindowSize } from "core/hooks/useWindowSize";
 
-function Sidebar() {
+const Sidebar: FC = () => {
+  const history = useHistory();
   const { status, menuItems, isSidebarOpen, isMobile } =
     useAppSelector(sidebar);
   const { status: categoryStatus, categoryId } = useAppSelector(category);
@@ -19,7 +24,7 @@ function Sidebar() {
   const [width] = useWindowSize();
 
   useEffect(() => {
-    dispatch(getCategoriesAsync());
+    menuItems.length === 0 && dispatch(getCategoriesAsync());
   }, []);
 
   useEffect(() => {
@@ -27,30 +32,37 @@ function Sidebar() {
     dispatch(setIsMobile(isMobile));
   }, [width]);
 
+  const handleMenuItemClick = (item: ICategory) => {
+    dispatch(getCategoryAsync([+item.id, "sidebarMenu"]));
+    isMobile && dispatch(toggleSidebar());
+    history.push(`/category`);
+  };
+
   return (
     <StyleWrapper {...{ isSidebarOpen, isMobile }}>
-      <button
-        className="toggle-button"
-        onClick={() => dispatch(toggleSidebar())}
-      >
-        {isSidebarOpen ? "-" : "+"}
-      </button>
+      <section className="sidebar-header">
+        <Link to="/">CATS WEBSITE</Link>
+
+        <button
+          className="toggle-button"
+          onClick={() => dispatch(toggleSidebar())}
+        >
+          {isSidebarOpen ? "-" : "+"}
+        </button>
+      </section>
 
       <div className="sidebar-menu">
         {status === "loading" ? (
           "Loading ..."
         ) : (
           <>
-            <h3 className="menu-title">Categories:</h3>
+            <p className="menu-title">Categories:</p>
             <ul className="menu-items">
               {menuItems.map((item: ICategory) => (
                 <li
                   key={item.name}
                   className={+item.id === categoryId ? "selected-item" : ""}
-                  onClick={() => {
-                    dispatch(getCategoryAsync([+item.id, "sidebarMenu"]));
-                    isMobile && dispatch(toggleSidebar());
-                  }}
+                  onClick={() => handleMenuItemClick(item)}
                 >
                   {item.name}
                   {categoryStatus === "loading" &&
@@ -64,6 +76,6 @@ function Sidebar() {
       </div>
     </StyleWrapper>
   );
-}
+};
 
-export default Sidebar;
+export default memo(Sidebar);

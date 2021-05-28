@@ -1,10 +1,10 @@
-import React, { useCallback } from "react";
-import StyleWrapper from "./Category.style";
-import { getCategoryAsync, category } from "./Category.slice";
+import React, { FC, memo, useCallback } from "react";
+import StyleWrapper from "./CategoryList.style";
+import { getCategoryAsync, category } from "./CategoryList.slice";
 import { useAppDispatch, useAppSelector } from "core/redux/hooks";
 import { IImage } from "types/category";
 
-function Category() {
+const CategoryList: FC = () => {
   const { status, items, categoryId } = useAppSelector(category);
   const dispatch = useAppDispatch();
 
@@ -38,6 +38,6 @@ function Category() {
       )}
     </StyleWrapper>
   );
-}
+};
 
-export default Category;
+export default memo(CategoryList);

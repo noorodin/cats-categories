@@ -4,6 +4,19 @@ export default styled.div`
   padding: 16px;
   background-color: #f0f0f0;
 
+  .sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+
+    a {
+      font-size: 21px;
+      text-decoration: none !important;
+      font-weight: bold;
+      margin: 8px 0px;
+    }
+  }
+
   .toggle-button {
     display: inline-block;
 
@@ -21,7 +34,8 @@ export default styled.div`
   }
 
   .menu-title {
-    margin: 12px 0px;
+    margin: 32px 0px 12px;
+    font-weight: bold;
   }
 
   .menu-items {

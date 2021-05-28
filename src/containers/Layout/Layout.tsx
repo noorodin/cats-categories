@@ -1,18 +1,18 @@
 import Sidebar from "components/Sidebar";
-import React, { ReactNode } from "react";
+import React, { memo, ReactNode } from "react";
 import StyleWrapper from "./Layout.style";
 
 interface LayoutProps {
-  children?: ReactNode;
+  children: ReactNode;
 }
 
-function Layout({ children }: LayoutProps) {
+const Layout = ({ children }: LayoutProps) => {
   return (
     <StyleWrapper>
       <Sidebar />
       {children}
     </StyleWrapper>
   );
-}
+};
 
-export default Layout;
+export default memo(Layout);
