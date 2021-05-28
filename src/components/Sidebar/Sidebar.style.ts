@@ -3,11 +3,15 @@ import styled from "styled-components";
 export default styled.div`
   padding: 16px;
   background-color: #f0f0f0;
+  position: sticky;
+  top: 0px;
 
   .sidebar-header {
     display: flex;
     justify-content: space-between;
     gap: 16px;
+    position: sticky;
+    top: 16px;
 
     a {
       font-size: 21px;
@@ -30,7 +34,7 @@ export default styled.div`
       props.isSidebarMenuOpen || !props.isMobile ? "flex" : "none"};
     flex-direction: column;
     position: sticky;
-    top: 16px;
+    top: 58px;
   }
 
   .menu-title {
