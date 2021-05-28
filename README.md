@@ -3,6 +3,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Demo
 
 ![](https://i.postimg.cc/hjmHyFQk/Cats-Website.gif)
+<img src="https://i.postimg.cc/hjmHyFQk/Cats-Website.gif" width="640" height="360" />
 
 ## Available Scripts
 
