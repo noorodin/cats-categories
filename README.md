@@ -1,9 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
-## Demo
+## Demo Link
 
-![Demo Image](https://i.postimg.cc/hjmHyFQk/Cats-Website.gif)
-<img src="https://i.postimg.cc/hjmHyFQk/Cats-Website.gif" width="100%" />
+[https://i.postimg.cc/hjmHyFQk/Cats-Website.gif](https://i.postimg.cc/hjmHyFQk/Cats-Website.gif)
 
 ## Available Scripts
 
