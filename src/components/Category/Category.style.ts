@@ -51,9 +51,7 @@ export default styled.section`
     }
 
     @media only screen and (min-width: 768px) {
-      display: grid;
       grid-template-columns: repeat(3, 1fr);
-      grid-gap: 24px;
     }
 
     @media only screen and (min-width: 1200px) {
