@@ -1,20 +1,33 @@
 import React, { useEffect } from "react";
 import { ICategory } from "types/category";
 import StyleWrapper from "./Sidebar.style";
-import { useAppSelector, useAppDispatch } from "core/hooks";
-import { sidebar, getCategoriesAsync, toggleSidebar } from "./Sidebar.slice";
+import { useAppSelector, useAppDispatch } from "core/redux/hooks";
+import {
+  sidebar,
+  getCategoriesAsync,
+  toggleSidebar,
+  setIsMobile,
+} from "./Sidebar.slice";
 import { getCategoryAsync } from "components/Category/Category.slice";
+import { useWindowSize } from "core/hooks/useWindowSize";
 
 function Sidebar() {
-  const { status, menuItems, isSidebarOpen } = useAppSelector(sidebar);
+  const { status, menuItems, isSidebarOpen, isMobile } =
+    useAppSelector(sidebar);
   const dispatch = useAppDispatch();
+  const [width] = useWindowSize();
 
   useEffect(() => {
     dispatch(getCategoriesAsync());
   }, []);
 
+  useEffect(() => {
+    const isMobile = width < 1200 ? true : false;
+    dispatch(setIsMobile(isMobile));
+  }, [width]);
+
   return (
-    <StyleWrapper {...{ isSidebarOpen }}>
+    <StyleWrapper {...{ isSidebarOpen, isMobile }}>
       <button className="toggle-menu" onClick={() => dispatch(toggleSidebar())}>
         {isSidebarOpen ? "-" : "+"}
       </button>
@@ -30,8 +43,8 @@ function Sidebar() {
                 <li
                   key={item.name}
                   onClick={() => {
-                    dispatch(getCategoryAsync(+item.id!));
-                    dispatch(toggleSidebar());
+                    dispatch(getCategoryAsync(+item.id));
+                    isMobile && dispatch(toggleSidebar());
                   }}
                 >
                   {item.name}

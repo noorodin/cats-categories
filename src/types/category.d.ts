@@ -1,5 +1,5 @@
 export interface ICategories {
-  id?: string;
+  id: string;
   breeds: any;
   categories: ICategory[];
   height: number;
@@ -8,6 +8,6 @@ export interface ICategories {
 }
 
 export interface ICategory {
-  id?: number;
-  name?: string;
+  id: number;
+  name: string;
 }

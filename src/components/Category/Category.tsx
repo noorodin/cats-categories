@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import StyleWrapper from "./Category.style";
 import { getCategoryAsync, category } from "./Category.slice";
-import { useAppDispatch, useAppSelector } from "core/hooks";
+import { useAppDispatch, useAppSelector } from "core/redux/hooks";
 import { ICategories } from "types/category";
 
 function Category() {
@@ -12,7 +12,7 @@ function Category() {
     return (
       <section className="image-wrapper">
         {items.map((item: ICategories) => (
-          <img key={item.id} src={item.url} alt="" loading="lazy" />
+          <img key={item.id} src={item.url} alt="" />
         ))}
       </section>
     );

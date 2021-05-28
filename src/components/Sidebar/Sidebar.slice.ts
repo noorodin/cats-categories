@@ -1,17 +1,19 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { RootState } from "core/store";
-import { getData } from "core/Axios/axios.api";
+import { RootState } from "core/redux/store";
+import { getData } from "core/axios/axios.api";
 import { ICategory } from "types/category";
 
 export interface SidebarState {
   menuItems: ICategory[];
   isSidebarOpen: boolean;
+  isMobile: boolean;
   status: "idle" | "loading" | "failed";
 }
 
 const initialState: SidebarState = {
-  menuItems: [{}],
-  isSidebarOpen: window.innerWidth > 1200,
+  menuItems: [],
+  isSidebarOpen: false,
+  isMobile: false,
   status: "idle",
 };
 
@@ -27,9 +29,11 @@ export const sidebarSlice = createSlice({
   name: "sidebar",
   initialState,
   reducers: {
+    setIsMobile: (state, action) => {
+      state.isMobile = action.payload;
+    },
     toggleSidebar: (state) => {
-      state.isSidebarOpen =
-        window?.innerWidth > 1200 ? true : !state.isSidebarOpen;
+      state.isSidebarOpen = state.isMobile ? !state.isSidebarOpen : true;
     },
   },
   extraReducers: (builder) => {
@@ -44,7 +48,7 @@ export const sidebarSlice = createSlice({
   },
 });
 
-export const { toggleSidebar } = sidebarSlice.actions;
+export const { toggleSidebar, setIsMobile } = sidebarSlice.actions;
 
 export const sidebar = (state: RootState) => state.sidebar;
 

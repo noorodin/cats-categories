@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { RootState } from "core/store";
-import { getData } from "core/Axios/axios.api";
+import { RootState } from "core/redux/store";
+import { getData } from "core/axios/axios.api";
 import { ICategories } from "types/category";
 
 export interface CategoryState {
@@ -37,7 +37,7 @@ export const categorySlice = createSlice({
       .addCase(getCategoryAsync.fulfilled, (state, action) => {
         state.status = "idle";
 
-        if (action?.meta?.arg === state.categoryId) {
+        if (action.meta.arg === state.categoryId) {
           state.items.push(...action.payload);
         } else {
           state.items = action.payload;

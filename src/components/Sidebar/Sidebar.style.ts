@@ -13,12 +13,15 @@ export default styled.div`
   }
 
   .sidebar-menu {
-    display: ${(props: any) => (props.isSidebarOpen ? "flex" : "none")};
+    display: ${(props: any) =>
+      props.isSidebarOpen || !props.isMobile ? "flex" : "none"};
     flex-direction: column;
+    position: sticky;
+    top: 16px;
   }
 
   .menu-title {
-    margin-bottom: 12px;
+    margin: 12px 0px;
   }
 
   .menu-items {
