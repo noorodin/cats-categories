@@ -4,7 +4,7 @@ export default styled.div`
   padding: 16px;
   background-color: #f0f0f0;
 
-  .toggle-menu {
+  .toggle-button {
     display: inline-block;
 
     @media only screen and (min-width: 1200px) {
@@ -39,6 +39,10 @@ export default styled.div`
       &:hover {
         cursor: pointer;
         background-color: #ddd;
+      }
+
+      &.selected-item {
+        color: #5cb85c;
       }
     }
   }

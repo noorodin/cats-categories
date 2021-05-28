@@ -8,12 +8,13 @@ import {
   toggleSidebar,
   setIsMobile,
 } from "./Sidebar.slice";
-import { getCategoryAsync } from "components/Category/Category.slice";
+import { getCategoryAsync, category } from "components/Category/Category.slice";
 import { useWindowSize } from "core/hooks/useWindowSize";
 
 function Sidebar() {
   const { status, menuItems, isSidebarOpen, isMobile } =
     useAppSelector(sidebar);
+  const { status: categoryStatus, categoryId } = useAppSelector(category);
   const dispatch = useAppDispatch();
   const [width] = useWindowSize();
 
@@ -28,7 +29,10 @@ function Sidebar() {
 
   return (
     <StyleWrapper {...{ isSidebarOpen, isMobile }}>
-      <button className="toggle-menu" onClick={() => dispatch(toggleSidebar())}>
+      <button
+        className="toggle-button"
+        onClick={() => dispatch(toggleSidebar())}
+      >
         {isSidebarOpen ? "-" : "+"}
       </button>
 
@@ -42,12 +46,16 @@ function Sidebar() {
               {menuItems.map((item: ICategory) => (
                 <li
                   key={item.name}
+                  className={+item.id === categoryId ? "selected-item" : ""}
                   onClick={() => {
-                    dispatch(getCategoryAsync(+item.id));
+                    dispatch(getCategoryAsync([+item.id, "sidebarMenu"]));
                     isMobile && dispatch(toggleSidebar());
                   }}
                 >
                   {item.name}
+                  {categoryStatus === "loading" &&
+                    +item.id === categoryId &&
+                    "..."}
                 </li>
               ))}
             </ul>

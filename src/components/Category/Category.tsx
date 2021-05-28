@@ -29,7 +29,9 @@ function Category() {
       ) : (
         <div className="content">
           <ItemsComponent />
-          <button onClick={() => dispatch(getCategoryAsync(+categoryId))}>
+          <button
+            onClick={() => dispatch(getCategoryAsync([+categoryId, "moreButton"]))}
+          >
             {status === "loading" ? "Loading ..." : "More Items"}
           </button>
         </div>

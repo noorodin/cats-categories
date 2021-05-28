@@ -17,7 +17,8 @@ const initialState: CategoryState = {
 
 export const getCategoryAsync = createAsyncThunk(
   "category/getCategory",
-  async (id: number) => {
+  async (params: any) => {
+    const [id] = params;
     const response = await getData(
       `/images/search?limit=10&category_ids=${id}`
     );
@@ -31,17 +32,19 @@ export const categorySlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getCategoryAsync.pending, (state) => {
+      .addCase(getCategoryAsync.pending, (state, action) => {
         state.status = "loading";
+        const [id] = action.meta.arg;
+        state.categoryId = id;
       })
       .addCase(getCategoryAsync.fulfilled, (state, action) => {
         state.status = "idle";
+        const [id, type] = action.meta.arg;
 
-        if (action.meta.arg === state.categoryId) {
+        if (type === "moreButton") {
           state.items.push(...action.payload);
         } else {
           state.items = action.payload;
-          state.categoryId = action.meta.arg;
         }
       });
   },
