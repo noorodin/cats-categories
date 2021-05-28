@@ -1,12 +1,12 @@
 import Sidebar from "components/Sidebar";
 import React, { memo, ReactNode } from "react";
-import StyleWrapper from "./Layout.style";
+import StyleWrapper from "./CommonInterface.style";
 
 interface LayoutProps {
   children: ReactNode;
 }
 
-const Layout = ({ children }: LayoutProps) => {
+const CommonInterface = ({ children }: LayoutProps) => {
   return (
     <StyleWrapper>
       <Sidebar />
@@ -15,4 +15,4 @@ const Layout = ({ children }: LayoutProps) => {
   );
 };
 
-export default memo(Layout);
+export default memo(CommonInterface);

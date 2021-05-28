@@ -1,14 +1,14 @@
 import React, { FC, memo } from "react";
 import StyleWrapper from "./Category.style";
-import Layout from "containers/Layout";
-import CategoryList from "components/CategoryList";
+import CommonInterface from "containers/CommonInterface";
+import ImagesList from "components/ImagesList";
 
 const Category: FC = () => {
   return (
     <StyleWrapper>
-      <Layout>
-        <CategoryList />
-      </Layout>
+      <CommonInterface>
+        <ImagesList />
+      </CommonInterface>
     </StyleWrapper>
   );
 };

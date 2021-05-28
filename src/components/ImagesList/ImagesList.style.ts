@@ -21,14 +21,7 @@ export default styled.section`
     color: #fff;
     background-color: #5cb85c;
     border-color: #4cae4c;
-    display: inline-block;
-    margin-bottom: 0;
-    font-weight: normal;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
     cursor: pointer;
-    background-image: none;
     border: 1px solid transparent;
     padding: 6px 12px;
     border-radius: 4px;

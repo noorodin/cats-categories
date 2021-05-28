@@ -33,7 +33,7 @@ export const sidebarSlice = createSlice({
       state.isMobile = action.payload;
     },
     toggleSidebarMenu: (state) => {
-      state.isSidebarMenuOpen = state.isMobile ? !state.isSidebarMenuOpen : true;
+      state.isSidebarMenuOpen = !state.isSidebarMenuOpen;
     },
   },
   extraReducers: (builder) => {

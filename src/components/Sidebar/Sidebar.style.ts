@@ -15,7 +15,7 @@ export default styled.div`
 
     a {
       font-size: 21px;
-      text-decoration: none !important;
+      text-decoration: none;
       font-weight: bold;
       margin: 8px 0px;
     }
@@ -23,9 +23,22 @@ export default styled.div`
 
   .toggle-button {
     display: inline-block;
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    cursor: pointer;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    border-radius: 4px;
+    min-width: 40px;
 
     @media only screen and (min-width: 1200px) {
       display: none;
+    }
+
+    &:hover {
+      background-color: #4cae4c;
+      border-color: #5cb85c;
     }
   }
 
@@ -62,28 +75,6 @@ export default styled.div`
       &.selected-item {
         color: #5cb85c;
       }
-    }
-  }
-
-  button {
-    color: #fff;
-    background-color: #5cb85c;
-    border-color: #4cae4c;
-    display: inline-block;
-    margin-bottom: 0;
-    font-weight: normal;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    cursor: pointer;
-    background-image: none;
-    border: 1px solid transparent;
-    padding: 6px 12px;
-    border-radius: 4px;
-
-    &:hover {
-      background-color: #4cae4c;
-      border-color: #5cb85c;
     }
   }
 `;

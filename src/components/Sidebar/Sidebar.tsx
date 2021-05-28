@@ -12,7 +12,7 @@ import {
 import {
   getCategoryAsync,
   category,
-} from "components/CategoryList/CategoryList.slice";
+} from "components/ImagesList/ImagesList.slice";
 import { useWindowSize } from "core/hooks/useWindowSize";
 
 const Sidebar: FC = () => {

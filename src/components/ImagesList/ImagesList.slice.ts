@@ -4,20 +4,20 @@ import { getData } from "core/axios/axios.api";
 import { IImage } from "types/category";
 
 export interface CategoryState {
-  items: IImage[];
+  images: IImage[];
   categoryId: number;
   status: "idle" | "loading" | "failed";
 }
 
 const initialState: CategoryState = {
-  items: [],
+  images: [],
   categoryId: -1,
   status: "idle",
 };
 
 export const getCategoryAsync = createAsyncThunk(
   "category/getCategory",
-  async (params: any) => {
+  async (params: any[]) => {
     const [id] = params;
     const response = await getData(
       `/images/search?limit=10&category_ids=${id}`
@@ -42,9 +42,9 @@ export const categorySlice = createSlice({
         const [id, type] = action.meta.arg;
 
         if (type === "moreButton") {
-          state.items.push(...action.payload);
+          state.images.push(...action.payload);
         } else {
-          state.items = action.payload;
+          state.images = action.payload;
         }
       });
   },

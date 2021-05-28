@@ -1,26 +1,26 @@
 import React, { FC, memo, useCallback } from "react";
-import StyleWrapper from "./CategoryList.style";
-import { getCategoryAsync, category } from "./CategoryList.slice";
+import StyleWrapper from "./ImagesList.style";
+import { getCategoryAsync, category } from "./ImagesList.slice";
 import { useAppDispatch, useAppSelector } from "core/redux/hooks";
 import { IImage } from "types/category";
 
-const CategoryList: FC = () => {
-  const { status, items, categoryId } = useAppSelector(category);
+const ImagesList: FC = () => {
+  const { status, images, categoryId } = useAppSelector(category);
   const dispatch = useAppDispatch();
 
   const ItemsComponent = useCallback(() => {
     return (
       <section className="image-wrapper">
-        {items.map((item: IImage) => (
+        {images.map((item: IImage) => (
           <img key={item.id} src={item.url} alt="" />
         ))}
       </section>
     );
-  }, [items]);
+  }, [images]);
 
   return (
     <StyleWrapper>
-      {items.length === 0 ? (
+      {images.length === 0 ? (
         <h1>
           {status === "loading" ? "Loading ..." : "Please select a category."}
         </h1>
@@ -40,4 +40,4 @@ const CategoryList: FC = () => {
   );
 };
 
-export default memo(CategoryList);
+export default memo(ImagesList);
