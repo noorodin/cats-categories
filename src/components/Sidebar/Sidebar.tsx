@@ -6,7 +6,7 @@ import { useAppSelector, useAppDispatch } from "core/redux/hooks";
 import {
   sidebar,
   getCategoriesAsync,
-  toggleSidebar,
+  toggleSidebarMenu,
   setIsMobile,
 } from "./Sidebar.slice";
 import {
@@ -17,7 +17,7 @@ import { useWindowSize } from "core/hooks/useWindowSize";
 
 const Sidebar: FC = () => {
   const history = useHistory();
-  const { status, menuItems, isSidebarOpen, isMobile } =
+  const { status, menuItems, isSidebarMenuOpen, isMobile } =
     useAppSelector(sidebar);
   const { status: categoryStatus, categoryId } = useAppSelector(category);
   const dispatch = useAppDispatch();
@@ -34,20 +34,20 @@ const Sidebar: FC = () => {
 
   const handleMenuItemClick = (item: ICategory) => {
     dispatch(getCategoryAsync([+item.id, "sidebarMenu"]));
-    isMobile && dispatch(toggleSidebar());
+    isMobile && dispatch(toggleSidebarMenu());
     history.push(`/category`);
   };
 
   return (
-    <StyleWrapper {...{ isSidebarOpen, isMobile }}>
+    <StyleWrapper {...{ isSidebarMenuOpen, isMobile }}>
       <section className="sidebar-header">
         <Link to="/">CATS WEBSITE</Link>
 
         <button
           className="toggle-button"
-          onClick={() => dispatch(toggleSidebar())}
+          onClick={() => dispatch(toggleSidebarMenu())}
         >
-          {isSidebarOpen ? "-" : "+"}
+          {isSidebarMenuOpen ? "-" : "+"}
         </button>
       </section>
 

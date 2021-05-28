@@ -5,14 +5,14 @@ import { ICategory } from "types/category";
 
 export interface SidebarState {
   menuItems: ICategory[];
-  isSidebarOpen: boolean;
+  isSidebarMenuOpen: boolean;
   isMobile: boolean;
   status: "idle" | "loading" | "failed";
 }
 
 const initialState: SidebarState = {
   menuItems: [],
-  isSidebarOpen: false,
+  isSidebarMenuOpen: false,
   isMobile: false,
   status: "idle",
 };
@@ -32,8 +32,8 @@ export const sidebarSlice = createSlice({
     setIsMobile: (state, action) => {
       state.isMobile = action.payload;
     },
-    toggleSidebar: (state) => {
-      state.isSidebarOpen = state.isMobile ? !state.isSidebarOpen : true;
+    toggleSidebarMenu: (state) => {
+      state.isSidebarMenuOpen = state.isMobile ? !state.isSidebarMenuOpen : true;
     },
   },
   extraReducers: (builder) => {
@@ -48,7 +48,7 @@ export const sidebarSlice = createSlice({
   },
 });
 
-export const { toggleSidebar, setIsMobile } = sidebarSlice.actions;
+export const { toggleSidebarMenu, setIsMobile } = sidebarSlice.actions;
 
 export const sidebar = (state: RootState) => state.sidebar;
 

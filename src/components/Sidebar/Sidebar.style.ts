@@ -27,7 +27,7 @@ export default styled.div`
 
   .sidebar-menu {
     display: ${(props: any) =>
-      props.isSidebarOpen || !props.isMobile ? "flex" : "none"};
+      props.isSidebarMenuOpen || !props.isMobile ? "flex" : "none"};
     flex-direction: column;
     position: sticky;
     top: 16px;
